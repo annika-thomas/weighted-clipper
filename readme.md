@@ -1,31 +1,107 @@
-# CLIPPER (Weighted Graph) — Minimal Example Repo
+# Weighted CLIPPER — Minimal Python Example
 
-This repo is a **minimal, easy-to-run example** showing how to use **CLIPPER** with **weighted** pairwise consistency (i.e., you keep edge-strength information instead of binarizing the graph).
+This repository provides a **minimal, self-contained Python example** demonstrating how to use **CLIPPER** with **weighted data associations**.
 
-> **Upstream / master README:** This repository’s setup notes and background are adapted from the official CLIPPER repository, which should be treated as the **master source of truth**:
-> - https://github.com/mit-acl/clipper :contentReference[oaicite:0]{index=0}
+It is intended as a lightweight, readable companion to the official CLIPPER repository, showing how to:
+- generate candidate landmark associations,
+- compute **per-association confidence weights**, and
+- inject those weights into CLIPPER’s affinity matrix before solving.
+
+> **Upstream / master repository:**  
+> This example builds directly on the official CLIPPER implementation.  
+> Please treat the upstream repo as the *source of truth* for CLIPPER itself:  
+> https://github.com/mit-acl/clipper
 
 ---
 
 ## What is CLIPPER?
 
-**CLIPPER** is a graph-theoretic framework for robust, pairwise data association used in robotics and autonomy (e.g., point cloud registration, sensor calibration, place recognition). It forms a graph using **geometric consistency** and reduces association to the **maximum clique** problem. CLIPPER provides a relaxation that (1) enables guarantees and (2) works on **weighted graphs**, avoiding the information loss from binarization common in other approaches. :contentReference[oaicite:1]{index=1}
+**CLIPPER** is a graph-theoretic framework for robust data association, commonly used in robotics and perception problems such as point cloud registration and landmark matching.
 
-The upstream CLIPPER repo provides **MATLAB and C++ implementations**, plus **Python bindings** and examples. :contentReference[oaicite:2]{index=2}
+Given a set of candidate associations, CLIPPER:
+- scores pairwise geometric consistency,
+- builds an affinity and constraint graph, and
+- solves for a globally consistent subset of associations using a maximum-clique-style optimization.
+
+Unlike purely binary formulations, CLIPPER supports **weighted graphs**, allowing additional confidence information to influence the solution.
+
+---
+
+## What this repo demonstrates
+
+This example focuses on a **weighted extension** of the standard CLIPPER workflow:
+
+1. Two synthetic landmark sets are generated with partial overlap.
+2. A dense candidate association list (cartesian product) is constructed.
+3. Associations are filtered and **weighted** based on landmark size consistency.
+4. CLIPPER computes geometric consistency using a Euclidean distance invariant.
+5. The computed association weights are injected onto the **diagonal of the CLIPPER affinity matrix**.
+6. CLIPPER solves for a consistent subset of associations.
+7. The result is visualized as two x–y plots with lines connecting selected matches.
+
+The goal is to show *how* and *where* weights can be incorporated, not to provide a full benchmark or application pipeline.
 
 ---
 
-## What this repo adds
+## Repository structure
 
-This repo is intentionally small and opinionated:
+```text
+weighted-clipper/
+├── README.md
+├── pyproject.toml
+├── env/
+│   └── requirements.txt
+├── third_party/
+│   └── clipper/                 # CLIPPER git submodule
+├── weighted_clipper/
+│   ├── association.py
+│   ├── AssociationWeighting.py
+│   ├── euclidean_landmark_matcher.py
+│   ├── synthetic.py
+│   └── plotting.py
+└── examples/
+   └── weighted_euclidean_landmarks.py
 
-- A single **weighted** example you can run end-to-end
-- A couple of helper utilities to construct a **weighted consistency graph**
-- “Copy/paste” commands to build CLIPPER (via submodule) and run the demo
+## Setting up CLIPPER
 
-If you want the full set of benchmarks, MATLAB tooling, bindings options, etc., use the upstream CLIPPER repo directly. :contentReference[oaicite:3]{index=3}
+This repository uses the official **CLIPPER** implementation as a git submodule.
+CLIPPER itself is not a pure Python package and must be built from source.
+
+For full details, refer to the upstream CLIPPER repository:
+https://github.com/mit-acl/clipper
+
+The instructions below summarize the standard setup used by this repository.
 
 ---
+
+### Clone the repository (with submodules)
+
+```bash
+git clone --recurse-submodules https://github.com/annika-thomas/weighted-clipper.git
+cd weighted-clipper
+
+If the repository was already cloned without submodules, initialize them with:
+
+```bash
+git submodule update --init --recursive
+
+### Build CLIPPER and Python bindings
+
+CLIPPER is built using CMake. The following commands compile the C++ library and
+install the Python bindings (`clipperpy`) into the currently active Python
+environment.
+
+Make sure your Python virtual environment is activated before running these
+commands.
+
+```bash
+cd third_party/clipper
+mkdir -p build
+cd build
+cmake -DBUILD_BINDINGS_PYTHON=ON ..
+make -j
+make pip-install
+
 
 ## Citation
 
