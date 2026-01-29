@@ -113,11 +113,19 @@ commands.
 
 ```bash
 cd third_party/clipper
-mkdir -p build
+mkdir build
 cd build
-cmake -DBUILD_BINDINGS_PYTHON=ON ..
-make -j
+cmake ..
+make
+```
+
+To install the Python bindings,
+```bash
+cd build
 make pip-install
+
+# or directly using pip (e.g., to control which python version)
+python3 -m pip install build/bindings/python # 'python3 -m' ensures appropriate pip version is used
 ```
 
 After installation, verify that CLIPPER is available in Python:
