@@ -145,7 +145,7 @@ If this command fails, check the following:
 
 Finally, setup the repo:
 ```bash
-cd weighted-clipper
+cd ~/weighted-clipper
 pip install -e .
 ```
 
