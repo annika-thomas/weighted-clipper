@@ -1,4 +1,4 @@
-# Weighted CLIPPER — Minimal Python Example
+# Weighted CLIPPER Python Example
 
 This repository provides a **minimal, self-contained Python example** demonstrating how to use **CLIPPER** with **weighted data associations**.
 
