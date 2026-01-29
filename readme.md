@@ -106,6 +106,20 @@ make -j
 make pip-install
 ```
 
+After installation, verify that CLIPPER is available in Python:
+
+```bash
+python -c "import clipperpy; print('clipperpy installed successfully')"
+```
+If this command fails, check the following:
+
+- Ensure the correct Python virtual environment is activated.
+- Re-run `make pip-install` after activating the virtual environment.
+- Confirm that `clipperpy` appears in the list of installed packages:
+
+```bash
+  pip list | grep clipper
+```
 
 ## Citation
 
