@@ -63,6 +63,32 @@ weighted-clipper/
    └── weighted_euclidean_landmarks.py
 ```
 
+
+## Setting up the Python virtual environment
+
+This repository uses a Python virtual environment to manage dependencies for the
+example code. CLIPPER itself is built separately and is **not** installed via
+`pip`.
+
+---
+
+### Create and activate the virtual environment
+
+From the repository root:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+After activation, your shell prompt should be prefixed with `(venv)`.
+
+Upgrade `pip` (recommended):
+
+```bash
+pip install --upgrade pip
+```
+
 ## Setting up CLIPPER
 
 This repository uses the official **CLIPPER** implementation as a git submodule.
