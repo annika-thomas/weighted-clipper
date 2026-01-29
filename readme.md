@@ -43,24 +43,29 @@ The goal is to show *how* and *where* weights can be incorporated, not to provid
 
 ---
 
-## Repository structure
+## Initial Repository Setup
 
-```text
-weighted-clipper/
-├── README.md
-├── pyproject.toml
-├── env/
-│   └── requirements.txt
-├── third_party/
-│   └── clipper/                 # CLIPPER git submodule
-├── weighted_clipper/
-│   ├── association.py
-│   ├── AssociationWeighting.py
-│   ├── euclidean_landmark_matcher.py
-│   ├── synthetic.py
-│   └── plotting.py
-└── examples/
-   └── weighted_euclidean_landmarks.py
+This repository uses the official **CLIPPER** implementation as a git submodule.
+CLIPPER itself is not a pure Python package and must be built from source.
+
+For full details, refer to the upstream CLIPPER repository:
+https://github.com/mit-acl/clipper
+
+The instructions below summarize the standard setup used by this repository.
+
+---
+
+### Clone the repository (with submodules)
+
+```bash
+git clone --recurse-submodules https://github.com/annika-thomas/weighted-clipper.git
+cd weighted-clipper
+```
+
+If the repository was already cloned without submodules, initialize them with:
+
+```bash
+git submodule update --init --recursive
 ```
 
 
@@ -89,29 +94,12 @@ Upgrade `pip` (recommended):
 pip install --upgrade pip
 ```
 
-## Setting up CLIPPER
+### Install Python dependencies
 
-This repository uses the official **CLIPPER** implementation as a git submodule.
-CLIPPER itself is not a pure Python package and must be built from source.
-
-For full details, refer to the upstream CLIPPER repository:
-https://github.com/mit-acl/clipper
-
-The instructions below summarize the standard setup used by this repository.
-
----
-
-### Clone the repository (with submodules)
+Install the required Python packages for the example code:
 
 ```bash
-git clone --recurse-submodules https://github.com/annika-thomas/weighted-clipper.git
-cd weighted-clipper
-```
-
-If the repository was already cloned without submodules, initialize them with:
-
-```bash
-git submodule update --init --recursive
+pip install -r env/requirements.txt
 ```
 
 ### Build CLIPPER and Python bindings
