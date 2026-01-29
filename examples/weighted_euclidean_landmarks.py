@@ -9,9 +9,9 @@ We:
      (Associations with more similar sizes receive higher weights.)
   4) Run CLIPPER using a Euclidean distance invariant, injecting the per-association
      weights onto the diagonal of the CLIPPER affinity matrix.
-  5) Solve for a consistent subset of associations using CLIPPER’s graph-theoretic
+  5) Solve for a consistent subset of associations using CLIPPERs graph-theoretic
      optimization.
-  6) Visualize the result by plotting the two landmark sets in x–y and drawing
+  6) Visualize the result by plotting the two landmark sets in x-y and drawing
      lines between the associations selected by CLIPPER.
 
 This example is intentionally minimal and self-contained, and is meant to show

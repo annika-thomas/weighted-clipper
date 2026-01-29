@@ -165,7 +165,7 @@ This script will:
 - filter and weight associations based on landmark size consistency,
 - run CLIPPER using a Euclidean distance invariant,
 - select a globally consistent subset of associations, and
-- visualize the result as two x–y plots with lines connecting the selected
+- visualize the result as two x-y plots with lines connecting the selected
   associations.
 
 The terminal output reports:
