@@ -143,6 +143,11 @@ If this command fails, check the following:
   pip list | grep clipper
 ```
 
+Finally, setup the repo:
+```bash
+pip install -e .
+```
+
 ## Running the example
 
 Once CLIPPER and the Python environment are set up, you can run the weighted
