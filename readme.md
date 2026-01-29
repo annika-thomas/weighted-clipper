@@ -61,6 +61,7 @@ weighted-clipper/
 │   └── plotting.py
 └── examples/
    └── weighted_euclidean_landmarks.py
+```
 
 ## Setting up CLIPPER
 
@@ -79,11 +80,13 @@ The instructions below summarize the standard setup used by this repository.
 ```bash
 git clone --recurse-submodules https://github.com/annika-thomas/weighted-clipper.git
 cd weighted-clipper
+```
 
 If the repository was already cloned without submodules, initialize them with:
 
 ```bash
 git submodule update --init --recursive
+```
 
 ### Build CLIPPER and Python bindings
 
@@ -101,6 +104,7 @@ cd build
 cmake -DBUILD_BINDINGS_PYTHON=ON ..
 make -j
 make pip-install
+```
 
 
 ## Citation
