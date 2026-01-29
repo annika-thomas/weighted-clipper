@@ -135,6 +135,32 @@ If this command fails, check the following:
   pip list | grep clipper
 ```
 
+## Running the example
+
+Once CLIPPER and the Python environment are set up, you can run the weighted
+association example from the repository root:
+
+```bash
+python examples/weighted_euclidean_landmarks.py
+```
+
+This script will:
+
+- generate two synthetic landmark sets with partial overlap,
+- construct a dense set of candidate associations (cartesian product),
+- filter and weight associations based on landmark size consistency,
+- run CLIPPER using a Euclidean distance invariant,
+- select a globally consistent subset of associations, and
+- visualize the result as two x–y plots with lines connecting the selected
+  associations.
+
+The terminal output reports:
+- the selected association index pairs, and
+- how many of the planted ground-truth correspondences were recovered.
+
+A figure window will also appear showing the two landmark sets and the selected
+matches.
+
 ## Citation
 
 If you use CLIPPER in academic work, please cite the CLIPPER paper (from the upstream repo): :contentReference[oaicite:4]{index=4}
