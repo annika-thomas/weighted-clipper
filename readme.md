@@ -14,6 +14,19 @@ It is intended as a lightweight, readable companion to the official CLIPPER repo
 
 ---
 
+## Tested environment
+
+This example has been tested with the following configuration:
+
+- **OS:** Ubuntu 20.04 (Focal)
+- **Python:** 3.8.10
+- **Compiler:** GCC (system default on Ubuntu 20.04)
+- **CLIPPER:** built from source via CMake (see instructions below)
+
+Other Linux distributions or Python versions may work but are not officially tested.
+
+---
+
 ## What is CLIPPER?
 
 **CLIPPER** is a graph-theoretic framework for robust data association, commonly used in robotics and perception problems such as point cloud registration and landmark matching.
